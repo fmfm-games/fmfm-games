@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fmfm-games</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .modal { display: none; }
+        .modal.show { display: flex; }
+    </style>
+
+    <style type="text/tailwindcss">
+        body { @apply bg-gray-100 text-gray-800; }
+        
+        .card { @apply bg-white shadow rounded-2xl p-5 cursor-pointer hover:shadow-lg transition; }
+        h2 { @apply text-xl font-semibold mb-2; }
+        img { @apply rounded-lg border border-gray-200; }
+
+        .modal-window { @apply bg-white shadow-xl rounded-2xl max-w-4xl w-full p-6 mx-4; }
+        h3 { @apply text-2xl font-bold mb-2 inline; }
+        .link { @apply text-indigo-600 hover:underline font-medium; }
+    </style>
+</head>
+
+<body">
+
+    <header class="text-center py-10">
+        <h1 class="text-3xl font-bold">fmfm-games</h1>
+        <p class="text-gray-500 mt-2">
+            SNS: 
+            <a href="https://x.com/fmfmgames" class="link" target="_blank">X</a>
+        </p>
+    </header>
+
+    <main class="max-w-7xl mx-auto grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-4 pb-20">
+
+        <div onclick="openModal('profile')" class="card">
+            <h2>プロフィール</h2>
+            <p class="text-gray-500">自己紹介</p>
+        </div>
+
+        <div onclick="openModal('game1')" class="card">
+            <h2>不安ごと</h2>
+            <p class="text-gray-500">日常の不安を思い出すホラーウォーキングシミュレータ</p>
+            <img src="img/screenshot_2025_12_26_0_0_32.png"/>
+        </div>
+
+        <div onclick="openModal('game2')" class="card">
+            <h2>なんか作りたい</h2>
+            <p class="text-gray-500">どんなのにしよっかな～</p>
+        </div>
+
+    </main>
+
+    <div id="modalOverlay" class="modal fixed inset-0 backdrop-blur-sm items-center justify-center z-40" onclick="closeModal(event)">
+
+        <div class="modal-window onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="float-right text-gray-400 hover:text-gray-700">✕</button>
+            <div id="modalContent" class="mt-6"></div>
+        </div>
+    </div>
+
+
+    <template id="profile">
+        <h3>プロフィール</h3>
+        <p class="text-gray-600 leading-relaxed">
+            ゲームを作っています。<br>
+            好きなゲーム：ゼルダシリーズ
+        </p>
+    </template>
+
+    <template id="game1">
+        <h3>不安ごと</h3>
+        <span>販売: <a href="https://store.steampowered.com/app/3294880/_/" class="link" target="_blank">Steam</a></span>
+        <span>展示: <a href="https://dreamscape-game.com/" class="link" target="_blank">DREAMSCAPE#4</a></span>
+        
+        <p class="text-gray-600 mb-3">
+            インターネット上で怪談や怖い話を読み漁ることを日課にするあなた。いつもの日課の後、何か異様な気配を感じた気が...？<br><br>
+
+            「不安ごと」は、読み終えた怪談が自身の身に降りかかってしまう、ホラーウォーキングシミュレータです。
+            プレイヤーのわずかな選択で、怪現象との新たな結末を迎えることも可能です。<br><br>
+
+            本作品は、ご自身のペースで楽しんでいただけるシナリオベースのゲームです。ジャンプスケア、QTE要素はともにほぼなく、心臓に良いホラーです。
+        </p>
+
+        <div class="mx-auto grid gap-4 grid-cols-2 px-4 max-h-[60vh] overflow-y-auto">
+            <img src="img/screenshot_2025_12_23_13_58_29.png"/>
+            <img src="img/screenshot_2025_12_23_14_2_26.png"/>
+            <img src="img/screenshot_2025_12_26_0_0_32.png"/>
+        </div>
+
+        
+    </template>
+
+    <template id="game2">
+        <h3>なんか作りたい</h3>
+        <p class="text-gray-600 mb-3">
+            ダミーテキスト
+        </p>
+    </template>
+
+    <script>
+        function openModal(id) {
+            const template = document.getElementById(id);
+            const modalContent = document.getElementById("modalContent");
+            modalContent.innerHTML = template.innerHTML;
+            document.getElementById("modalOverlay").classList.add("show");
+        }
+
+        function closeModal(e) {
+            document.getElementById("modalOverlay").classList.remove("show");
+        }
+    </script>
+</body>
+
+</html>
