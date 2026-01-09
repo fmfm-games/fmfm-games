@@ -23,6 +23,8 @@
         .modal-window { @apply bg-white shadow-xl rounded-2xl max-w-4xl w-full p-6 mx-4; }
         h3 { @apply text-2xl font-bold mb-2 inline; }
         .link { @apply text-indigo-600 hover:underline font-medium; }
+        .modal-text { @apply text-gray-600 mb-3 pt-5 leading-relaxed; }
+        .screen-shots { @apply mx-auto grid gap-4 grid-cols-2 px-4 max-h-[60vh] overflow-y-auto; }
     </style>
 </head>
 
@@ -31,10 +33,16 @@
     <header class="text-center py-10">
         <h1 class="text-3xl font-bold">fmfm-games</h1>
         <p class="text-gray-500 mt-2">
-            SNS: 
+            <a href="https://store.steampowered.com/search/?developer=fmfm-games" class="link" target="_blank">STEAM</a>
             <a href="https://x.com/fmfmgames" class="link" target="_blank">X</a>
+            <a href="https://www.youtube.com/@fmfm-games" class="link" target="_blank">YouTube</a>
+            <a href="https://fmfmgames.booth.pm/" class="link" target="_blank">BOOTH</a>
         </p>
     </header>
+
+
+
+
 
     <main class="max-w-7xl mx-auto grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-4 pb-20">
 
@@ -56,7 +64,7 @@
 
     </main>
 
-    <div id="modalOverlay" class="modal fixed inset-0 backdrop-blur-sm items-center justify-center z-40" onclick="closeModal(event)">
+    <div id="modalOverlay" class="modal fixed inset-0 backdrop-blur-sm items-center justify-center z-40" onclick="closeModalFromOverlay(event)">
 
         <div class="modal-window onclick="event.stopPropagation()">
             <button onclick="closeModal()" class="float-right text-gray-400 hover:text-gray-700">✕</button>
@@ -65,29 +73,33 @@
     </div>
 
 
+
+
+
+
     <template id="profile">
         <h3>プロフィール</h3>
-        <p class="text-gray-600 leading-relaxed">
+        <div class="modal-text">
             ゲームを作っています。<br>
             好きなゲーム：ゼルダシリーズ
-        </p>
+        </div>
     </template>
 
     <template id="game1">
         <h3>不安ごと</h3>
-        <span>販売: <a href="https://store.steampowered.com/app/3294880/_/" class="link" target="_blank">Steam</a></span>
-        <span>展示: <a href="https://dreamscape-game.com/" class="link" target="_blank">DREAMSCAPE#4</a></span>
+        <span>販売: <a href="https://store.steampowered.com/app/3294880/_/" class="link" target="_blank">STEAM</a></span>
+        <span>イベント参加: <a href="https://dreamscape-game.com/" class="link" target="_blank">DREAMSCAPE#4</a></span>
         
-        <p class="text-gray-600 mb-3">
+        <div class="modal-text">
             インターネット上で怪談や怖い話を読み漁ることを日課にするあなた。いつもの日課の後、何か異様な気配を感じた気が...？<br><br>
 
             「不安ごと」は、読み終えた怪談が自身の身に降りかかってしまう、ホラーウォーキングシミュレータです。
             プレイヤーのわずかな選択で、怪現象との新たな結末を迎えることも可能です。<br><br>
 
             本作品は、ご自身のペースで楽しんでいただけるシナリオベースのゲームです。ジャンプスケア、QTE要素はともにほぼなく、心臓に良いホラーです。
-        </p>
-
-        <div class="mx-auto grid gap-4 grid-cols-2 px-4 max-h-[60vh] overflow-y-auto">
+        </div>
+        <div class="screen-shots">
+            <iframe class="rounded-lg w-full h-full" src="https://www.youtube.com/embed/jlaJ1Xmnqqs?si=6f62xX5x6aZK8eXN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <img src="img/screenshot_2025_12_23_13_58_29.png"/>
             <img src="img/screenshot_2025_12_23_14_2_26.png"/>
             <img src="img/screenshot_2025_12_26_0_0_32.png"/>
@@ -98,11 +110,15 @@
 
     <template id="game2">
         <h3>なんか作りたい</h3>
-        <p class="text-gray-600 mb-3">
+        <div class="modal-text">
             ダミーテキスト
-        </p>
+        </div>
     </template>
 
+
+
+
+    
     <script>
         function openModal(id) {
             const template = document.getElementById(id);
@@ -111,9 +127,15 @@
             document.getElementById("modalOverlay").classList.add("show");
         }
 
-        function closeModal(e) {
+        function closeModalFromOverlay(e) {
+            if (e.target.id !== "modalOverlay") return;
+            closeModal();
+        }
+
+            function closeModal() {
             document.getElementById("modalOverlay").classList.remove("show");
         }
+
     </script>
 </body>
 
